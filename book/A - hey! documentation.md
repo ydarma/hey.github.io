@@ -38,8 +38,8 @@ def size 20
 green-square(size)
 ```
 
- - <a name="range"></a> `range(start end step?)` : builds a sequence of numbers that starts and finish at given numbers.
-   Optionally skips number by the given step.
+ - <a name="range"></a> `range(count start step?)` : builds a sequence of count numbers which first element is the given start number.
+   Optionally skips numbers by the given step.
 ```hey
 range(2 10 2)
 ```
