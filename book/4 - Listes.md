@@ -51,20 +51,6 @@ c("Les" 40 "voleurs")(2)
 c(1 c(2 4) c(8 16))(3)
 ```
 
-<a name="compare-l"></a>
-- Considérons ces deux listes : `c(1 1 1 1 1 1 1 1 1)` et `c(1 1 1 1 1 1 1 1 1 1)` ;
-on souhaite savoir laquelle est la plus longue. Complète le programme suivant pour qu'il produise :
-  - `2` si la seconde liste est plus longue que la première
-  - `1` sinon
-
-```hey
-c(1 1 1 1 1 1 1 1 1)(?(c(1 1 1 1 1 1 1 1 1 1)) ?)
-```
-```hey
-; solution
-c(1 1 1 1 1 1 1 1 1)(l(c(1 1 1 1 1 1 1 1 1 1)) 2)
-```
-
 - Le programme suivant définit `a` et `b` qui peuvent valoir soit `1` soit `2`
 Compléter le programme suivant pour qu'il produise :
   - `1` si `a` et `b` valent `1`
@@ -74,14 +60,14 @@ Compléter le programme suivant pour qu'il produise :
 def a ... ; 1 ou 2
 def b ... ; 1 ou 2
 
-c(? ?)(?)
+c(? ?)(?) ; 1 si a ET b = 1
 ```
 ```hey
 ; solution
 def a 1 ; 1 ou 2
 def b 2 ; 1 ou 2
 
-c(a b)(b)
+c(a b)(b) ; 1 si a ET b = 1
 ```
 
 - Même énoncé qu'à l'exercice précédent mais on veut produire :
@@ -93,7 +79,7 @@ c(a b)(b)
 def a 1 ; 1 ou 2
 def b 2 ; 1 ou 2
 
-c(a b)(a)
+c(a b)(a) ; 1 si a OU b = 1
 ```
 
 ## Autres méthodes de construction
