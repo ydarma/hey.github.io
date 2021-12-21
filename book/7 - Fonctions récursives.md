@@ -1,5 +1,15 @@
 # Fonctions récursives
 
+ - [Introduction](#introduction)
+ - [Premier exemple : `mul-2`](#premier-exemple--mul-2)
+ - [Deuxième exemple : `gt`](#deuxième-exemple--gt)
+ - [Exercice : `is-1*2`](#exercice--is-12)
+ - [Exercice : `paire?` / `impaire?`](#exercice--paire--impaire)
+ - [Exercice : `head-1*2` / `tail-1*2`](#exercice--head-12--tail-12)
+ - [Exercice : `while`](#exercice--while)
+
+#### Introduction
+
 Une fonction peut s'appeler elle-même. Cela s'appelle la récursion.
 
 Dans la suite nous considérerons qu'un résultat égal à `1` est vrai et `2` est faux.
@@ -32,7 +42,8 @@ Nous allons dans les exemples et exercices qui suivent travailler avec des liste
 
 Nous les appelerons les listes 1\*2.
 
-**Premier exemple** de fonction récursive : `mul-2` reçoit en paramètre une liste 1\*2
+#### Premier exemple : `mul-2`
+La fonction récursive `mul-2` reçoit en paramètre une liste 1\*2
 et renvoie une autre liste 1\*2 avec le double de nombres `1`.
 <pre>
  c(2)     ->  c(2)
@@ -114,7 +125,8 @@ def mul-2 fun(l) if(
 mul-2(c(1 1 2))
 ```
 
-**Deuxième exemple** chercher si une liste 1\*2 est plus longue qu'une autre.
+#### Deuxième exemple : `gt`
+La fonction `gt` vérifie si une liste 1\*2 est plus longue qu'une autre.
 
 La fonction `gt` reçoit deux listes, `a` et `b` et renvoie `1` si `a` est plus longue que `b`, `2` sinon.
 `gt` se comporte différemment suivant les deux cas :
@@ -207,7 +219,7 @@ def gt fun(a b) if (
 gt(c(1 1 2) c(1 1 1 2))
 ```
 
-###### Exercice
+###### Exercice : `is-1*2`
 Le but est d'écrire une fonction récursive qui vérifie si une liste est de type 1*2.
 Rédige en français les deux cas possibles : celui qui produit un résultat et celui qui entraine la récursion.
 *indice : le premier cas contient 2 possibilités de résultat*
@@ -239,6 +251,11 @@ Ecris la fonstion récursive `is-1*2?` qui renvoie `1` si la liste est de type 1
 def vrai 1
 def faux 2
 
+def if fun(predicat f-si-vrai f-si-faux)
+  c(f-si-vrai f-si-faux)(predicat)()
+
+def tail fun(liste) s(liste 2)
+
 def not fun(a) c(faux vrai)(a)
 
 def or fun(a b) c(a b)(a)
@@ -246,11 +263,6 @@ def or fun(a b) c(a b)(a)
 def head-1? fun(liste) c(vrai)(liste(1) faux)
 
 def zero? fun(liste) c(faux vrai)(liste(1) faux)
-
-def if fun(predicat f-si-vrai f-si-faux)
-  c(f-si-vrai f-si-faux)(predicat)()
-
-def tail fun(liste) s(liste 2)
 
 def is-1*2? fun(liste) if (
   not(head-1?(liste))
@@ -261,7 +273,7 @@ def is-1*2? fun(liste) if (
 is-1*2?(c(1 1 1 3 1 2))
 ```
 
-###### Exercice
+###### Exercice : `paire?` / `impaire?`
 Dans cet exercice nous allons chercher si une liste 1\*2 contient un nombre pair de `1`.
 Par commodité nous dirons qu'une liste 1\*2 est paire si elle contient un nombre pair de `1`
 et sinon qu'elle est impaire.
@@ -280,12 +292,12 @@ nous supposerons que la fonction `impaire?` existe.
 def vrai 1
 def faux 2
 
-def zero? fun(liste) c(faux vrai)(liste(1) faux)
-
 def if fun(predicat f-si-vrai f-si-faux)
   c(f-si-vrai f-si-faux)(predicat)()
 
 def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
 
 def paire? fun(liste) if (
   ... ; cas 1 ou cas 2 ?
@@ -301,12 +313,12 @@ paire?
 def vrai 1
 def faux 2
 
-def zero? fun(liste) c(faux vrai)(liste(1) faux)
-
 def if fun(predicat f-si-vrai f-si-faux)
   c(f-si-vrai f-si-faux)(predicat)()
 
 def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
 
 def paire? fun(liste) if (
   zero?(liste)
@@ -333,12 +345,12 @@ Maintnant transpose le raisonnement en compétant ce programme :
 def vrai 1
 def faux 2
 
-def zero? fun(liste) c(faux vrai)(liste(1) faux)
-
 def if fun(predicat f-si-vrai f-si-faux)
   c(f-si-vrai f-si-faux)(predicat)()
 
 def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
 
 def impaire? fun(liste) ...
 
@@ -356,12 +368,12 @@ paire?(c(1 1 1 2))
 def vrai 1
 def faux 2
 
-def zero? fun(liste) c(faux vrai)(liste(1) faux)
-
 def if fun(predicat f-si-vrai f-si-faux)
   c(f-si-vrai f-si-faux)(predicat)()
 
 def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
 
 def impaire? fun(liste) if (
   zero?(liste)
@@ -378,26 +390,24 @@ def paire? fun(liste) if (
 paire?(c(1 1 1 2))
 ```
 
-###### Exercice
+###### Exercice : `head-1\*2` / `tail-1\*2`
 
 Considérons maintenant des listes de la forme `c(1 1 1 2 1 2 1 1 1 1 2 ... 2)`
 composées de plusieurs suites 1\*2 concaténées. Nous les apellerons listes UR
-(nous verrons pourquoi au chapitre suivant)
+(nous verrons pourquoi au chapitre suivant).
 
- - Redige en français le fonctionnement de la fonction récursive `head-1*2`
-   - Quel résultat produit-elle ?
-   - Dans quel cas la récursion est effectuée ?
+Soit le programme suivant :
 
 ```hey
 def vrai 1
 def faux 2
 
-def zero? fun(liste) c(faux vrai)(liste(1) faux)
-
 def if fun(predicat f-si-vrai f-si-faux)
   c(f-si-vrai f-si-faux)(predicat)()
 
 def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
 
 def head-1*2 fun(liste) if(
   zero?(liste)
@@ -407,6 +417,10 @@ def head-1*2 fun(liste) if(
 
 head-1*2(c(1 2 1 1 1 2 1 2))
 ```
+
+ - Redige en français le fonctionnement de la fonction récursive `head-1*2`
+   - Quel résultat produit-elle ?
+   - Dans quel cas la récursion est effectuée ?
 
 ```hey
 ; solution
@@ -418,8 +432,8 @@ head-1*2(c(1 2 1 1 1 2 1 2))
 ; le résultat final est la première liste 1*2 de la liste UR reçue en paramètre
 ```
 
-Ecris maintemant la fonction `tail-1*2` qui supprime la première liste 1\*2
-de la liste (1\*2)\* reçue en paramètre, et renvoie la fin.
+  - Ecris maintemant la fonction `tail-1*2` qui supprime la première liste 1\*2
+  de la liste (1\*2)\* reçue en paramètre, et renvoie la fin.
 
 <pre>
 ex: tail-1*2(c(1 2 1 1 1 2 1 2)) -> c(1 1 1 2 1 2)
@@ -430,12 +444,12 @@ ex: tail-1*2(c(1 2 1 1 1 2 1 2)) -> c(1 1 1 2 1 2)
 def vrai 1
 def faux 2
 
-def zero? fun(liste) c(faux vrai)(liste(1) faux)
-
 def if fun(predicat f-si-vrai f-si-faux)
   c(f-si-vrai f-si-faux)(predicat)()
 
 def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
 
 def tail-1*2 fun(liste) if(
   zero?(liste)
@@ -444,4 +458,76 @@ def tail-1*2 fun(liste) if(
 )
 
 tail-1*2(c(1 2 1 1 1 2 1 2))
+```
+
+###### Exercice : `while`
+
+La fonction `while` prend trois paramètres :
+  - `test` : une fonction du type `(liste) -> vrai ou faux`
+  - `f` : une fonction du type `(liste) -> liste`
+  - `args` : une liste initiale
+  
+La fonction `while` est une fonction récursive dont le fonctionnement est :
+  - cas 1: `test(args)` renvoie `faux` : renvoie `args`
+  - cas 2: `test(args)` renvoie `vrai` : renvoie `f(args)`
+  
+Complète le programme suivant sachant que le résultat final est `c(2 1 2 1 2 1 2)`:
+
+```hey
+def vrai 1
+def faux 2
+
+def if fun(predicat f-si-vrai f-si-faux)
+  c(f-si-vrai f-si-faux)(predicat)()
+  
+def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
+
+def cas-1 fun(args) ...
+
+def cas-2 fun(test f args) ...
+
+def while fun(test f args) if (
+    test(args)
+    fun() cas-1(args)
+    fun() cas-2(args)
+)
+
+def test fun(args) zero?(args)
+
+def f fun(args)
+  c(args tail(args))
+  
+while(test f c(1 1 1 2))
+```
+
+```hey
+; solution
+def vrai 1
+def faux 2
+
+def if fun(predicat f-si-vrai f-si-faux)
+  c(f-si-vrai f-si-faux)(predicat)()
+  
+def tail fun(liste) s(liste 2)
+
+def zero? fun(liste) c(faux vrai)(liste(1) faux)
+
+def cas-1 fun(args) args
+
+def cas-2 fun(args) while(test f f(args))
+
+def while fun(test f args) if (
+    test(args)
+    fun() cas-1(args)
+    fun() cas-2(args)
+)
+
+def test fun(args) zero?(args)
+
+def f fun(args)
+  c(tail(args) 1 2)
+  
+while(test f c(1 1 1 2))
 ```
